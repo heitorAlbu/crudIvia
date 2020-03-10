@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<h:outputStylesheet name="css/style.css" />
+	<title>Listagem de Usuários</title>
+</h:head>
+<h:body>
+<h2 align="center">Listagem de usuários</h2>
+
+<b:container fluid="true">
+
+
+			<b:row styleClass="table-responsive">
+			<h:form styleClass="tabela">
+			
+			<h:dataTable 
+			
+			styleClass="table table-striped"
+			 value="#{manterUsuarioBean.usuarios}" var="item" >
+			 
+			 	<h:column>
+             		<f:facet name="header">
+             		<h:outputText value="Id" />
+             		</f:facet>
+             		<h:outputText value="#{item.id}" />
+  			 	</h:column>
+  			    <h:column>
+             		<f:facet name="header">
+             		<h:outputText value="Nome" />
+             		</f:facet>
+             		<h:outputText value="#{item.nome}"/>
+   			 	</h:column>
+   			 	<h:column>
+             		<f:facet name="header">
+             		<h:outputText value="Email" />
+             		</f:facet>
+             		<h:outputText value="#{item.email}"/>
+   			    </h:column>
+			 	<h:column>
+              		<b:commandLink value="excluir" action="#{manterUsuarioBean.deletarUsuario(item.id)}">
+              		<f:param value="#{item.id}" name="id"/> 
+              		</b:commandLink>
+    		 	</h:column>
+				<h:column>
+              		<b:commandLink value="editar" action="#{manterUsuarioBean.editarUsuario(item)}">
+              		<f:param value="#{item.id}" name="id"/> 
+              		</b:commandLink>
+    		 	</h:column>
+    		 	<h:column>
+              		<b:commandLink value="cadastrar telefones" action="#{manterTelefoneBean.cadastroTelefones(item)}">
+              		<f:param value="#{item.id}" name="id"/> 
+              		</b:commandLink>
+             	</h:column>
+    		</h:dataTable>
+    		
+			</h:form>
+			</b:row>
+			</b:container>
+<b:container>			
+<h:form>
+<b:commandButton action="#{manterUsuarioBean.cadastroUsuario}" look="primary btn-block" value="Voltar Cadastro" />
+</h:form>
+</b:container>
+</h:body>
+
+</html>

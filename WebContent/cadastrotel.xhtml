@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<h:outputStylesheet name="css/style.css" />
+	<title>Cadastro de Usuários</title>
+</h:head>
+<h:body>
+<b:container>
+	<h:form>
+		<div class="container">
+			<div class="box">
+			<b:message/>
+				<h2 align="center">Cadastro de telefones</h2> 
+				
+				
+   				
+   				
+				<h1><h:outputText id="nomeUser"  value="#{manterTelefoneBean.usuario.nome}"/></h1>
+			
+				<p>Digite o ddd </p>
+				<b:inputText id="ddd" type="number" placeholder="ddd" value="#{manterTelefoneBean.telefone.ddd}"/>
+				
+				<p>Digite o numero do telefone </p>
+				<b:inputText id="numero"  placeholder="número" value="#{manterTelefoneBean.telefone.numero}"/>
+				
+				<p>Digite o numero do telefone </p>
+				<b:inputText id="tipo"  placeholder="tipo" value="#{manterTelefoneBean.telefone.tipo}"/>
+   
+			
+				<b:commandButton action="#{manterTelefoneBean.cadastrarTelefone}" look="primary btn-block" value="Cadastrar" />
+				<b:commandButton action="#{manterUsuarioBean.listarUsuarios}" look="primary btn-block" value="Voltar Lista" />
+				<div align="center">
+				<br/>
+				<!-- <b:commandLink value="Faça login." action="login.xhtml?faces-redirect=true"/> -->
+				 </div>
+			</div>
+		</div>
+	</h:form>
+	
+	<b:container fluid="true">
+
+
+			<b:row styleClass="table-responsive">
+			<h:form styleClass="tabela">
+			
+			<h:dataTable styleClass="table table-striped"
+			 value="${manterTelefoneBean.obterTelefonesPorUsuario()}" var="item">
+			
+			 <h:column>
+             	<f:facet name="header">
+             	<h:outputText value="Numeros" />
+             	</f:facet>
+             	<h:outputText value="#{item.numero}" />
+  			 </h:column>
+			
+			</h:dataTable>
+			
+			</h:form>
+			</b:row>
+			</b:container>
+			
+			
+	
+</b:container>
+</h:body>
+</html>
